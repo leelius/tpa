@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="" name="description" />
+<meta content="webthemez" name="author" />
+<title>echarts绘制中国地图</title>
+<!-- Bootstrap Styles-->
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FontAwesome Styles-->
+<link href="assets/css/font-awesome.css" rel="stylesheet" />
+<!-- Custom Styles-->
+<link href="assets/css/custom-styles.css" rel="stylesheet" />
+<!-- Google Fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default top-navbar" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><strong><i
+						class="icon fa fa-plane"></i> BRILLIANT</strong></a>
+				<div id="sideNav" href="">
+					<i class="fa fa-bars icon"></i>
+				</div>
+			</div>
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-messages">
+						<li><a href="#">
+								<div>
+									<strong>John Doe</strong> <span class="pull-right text-muted">
+										<em>Today</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since the 1500s...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since an kwilnw...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since the...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>Read
+									All Messages</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-messages --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-tasks">
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 1</strong> <span class="pull-right text-muted">60%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-success"
+											role="progressbar" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%">
+											<span class="sr-only">60% Complete (success)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 2</strong> <span class="pull-right text-muted">28%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-info" role="progressbar"
+											aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"
+											style="width: 28%">
+											<span class="sr-only">28% Complete</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 3</strong> <span class="pull-right text-muted">60%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-warning"
+											role="progressbar" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%">
+											<span class="sr-only">60% Complete (warning)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 4</strong> <span class="pull-right text-muted">85%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-danger"
+											role="progressbar" aria-valuenow="85" aria-valuemin="0"
+											aria-valuemax="100" style="width: 85%">
+											<span class="sr-only">85% Complete (danger)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Tasks</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-tasks --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+		</nav>
+		<!--/. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+
+					<li><a href="index.html"><i class="fa fa-dashboard"></i>
+							Dashboard</a></li>
+					<li><a href="ui-elements.html"><i class="fa fa-desktop"></i>
+							UI Elements</a></li>
+
+					<li><a href="#"><i class="fa fa-sitemap"></i> Charts<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="chart.html">Charts JS</a></li>
+							<li><a href="morris-chart.html">Morris Chart</a></li>
+						</ul></li>
+					<li><a href="tab-panel.html"><i class="fa fa-qrcode"></i>
+							Tabs & Panels</a></li>
+
+					<li><a href="table.html"><i class="fa fa-table"></i>
+							Responsive Tables</a></li>
+					<li><a href="form.html"><i class="fa fa-edit"></i> Forms </a>
+					</li>
+
+
+					<li><a href="#"><i class="fa fa-sitemap"></i> Multi-Level
+							Dropdown<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="#">Second Level Link</a></li>
+							<li><a href="#">Second Level Link</a></li>
+							<li><a href="#">Second Level Link<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li><a href="#">Third Level Link</a></li>
+									<li><a href="#">Third Level Link</a></li>
+									<li><a href="#">Third Level Link</a></li>
+
+								</ul></li>
+						</ul></li>
+					<li><a class="active-menu" href="empty.html"><i
+							class="fa fa-fw fa-file"></i> Empty Page</a></li>
+				</ul>
+
+			</div>
+
+		</nav>
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+					Empty Page <small>Create new page.</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Empty</a></li>
+					<li class="active">Data</li>
+				</ol>
+
+			</div>
+			<div id="page-inner">
+				<!-- content start -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+
+    <div id="container" style="height: 660px;width:1000px;background:white;margin:20px 0 0;"></div>
+
+
+					</div>
+				</div>
+				<!-- content end -->
+				<footer>
+					<p>
+						Copyright &copy; 2016.Company name All rights reserved.<a
+							target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+					</p>
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+	</div>
+	<!-- /. WRAPPER  -->
+	<!-- JS Scripts-->
+	<!-- jQuery Js -->
+	<script src="assets/js/jquery-1.10.2.js"></script>
+	<!-- Bootstrap Js -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- Metis Menu Js -->
+	<script src="assets/js/jquery.metisMenu.js"></script>
+	<!-- Custom Js -->
+	<script src="assets/js/custom-scripts2.js"></script>
+	<!-- mapchina -->
+	<script src="assets/js/echarts/echarts.min.js"></script>
+	<script src="assets/js/echarts/china.js"></script>
+<script type="text/javascript">
+    // 全国省份列表
+    var dataMap = [{ name: '北京' }, { name: '天津' }, { name: '上海' }, { name: '重庆' }, { name: '河北' }, { name: '河南' }, { name: '云南' }, { name: '辽宁' }, { name: '黑龙江' }, { name: '湖南' }, { name: '安徽' }, { name: '山东' },
+    { name: '新疆' }, { name: '江苏' }, { name: '浙江' }, { name: '江西' }, { name: '湖北' }, { name: '广西' }, { name: '甘肃' }, { name: '山西' }, { name: '内蒙古' }, { name: '陕西' }, { name: '吉林' }, { name: '福建' }, { name: '贵州' },
+    { name: '广东' }, { name: '青海' }, { name: '西藏' }, { name: '四川' }, { name: '宁夏' }, { name: '海南' }, { name: '台湾' }, { name: '香港' }, { name: '澳门' }]
+    // 需要在页面上直接标记出来的城市
+    var specialMap = ['浙江', '云南', '陕西', '四川'];
+    // 对dataMap进行处理，使其可以直接在页面上展示
+    for (var i = 0; i < specialMap.length; i++) {
+        for (var j = 0; j < dataMap.length; j++) {
+            if (specialMap[i] == dataMap[j].name) {
+                dataMap[j].selected = true;
+                break;
+            }
+
+        }
+    }
+    // 绘制图表，准备数据
+    var option = {
+        tooltip: {
+            formatter: function (params) {
+                var info = '<p style="font-size:18px">' + params.name + '</p><p style="font-size:14px">这里可以写一些，想展示在页面上的别的信息</p>'
+                return info;
+            },
+            backgroundColor: "#ff7f50",//提示标签背景颜色
+            textStyle: { color: "#fff" } //提示标签字体颜色
+        },
+        series: [
+            {
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode: 'multiple',
+                label: {
+                    normal: {
+                        show: true,//显示省份标签
+                        // textStyle:{color:"#c71585"}//省份标签字体颜色
+                    },
+                    emphasis: {
+                        show: true,//对应的鼠标悬浮效果
+                        // textStyle:{color:"#800080"}
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: .5,//区域边框宽度
+                        // borderColor: '#009fe8',//区域边框颜色
+                        // areaColor:"#ffefd5",//区域颜色
+                    },
+                    emphasis: {
+                        borderWidth: .5,
+                        borderColor: '#4b0082',
+                        areaColor: "#ffdead",
+                    }
+                },
+                data: dataMap
+            }
+        ]
+    };
+    //初始化echarts实例
+    var myChart = echarts.init(document.getElementById('container'));
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+</script>
+
+</body>
+</html>

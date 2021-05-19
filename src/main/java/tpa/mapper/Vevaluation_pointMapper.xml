@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.Vevaluation_pointMapper">
+	<!-- 返回自定义类型列表 -->
+	<resultMap id="userResultMap1"
+		type="app.entity.StatEvaluationPoint">
+		<id property="subject_id" column="subject_id" />
+		<result property="subject_name" column="subject_name" />
+		<result property="type" column="type" />
+		<result property="evaluation_type_name"
+			column="evaluation_type_name" />
+		<result property="num" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string"
+		resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as
+		num FROM `vevaluation_point` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max" parameterType="string" resultType="int">
+		select
+		max(${fieldname}) as num from `vevaluation_point`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `vevaluation_point` set
+		${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>
+	<select id="statEvaluationPointByMap" resultMap="userResultMap1">
+		SELECT
+		subject_id,subject_name,type,evaluation_type_name,count(subject_id) as
+		num FROM vevaluation_point group by subject_id,type
+	</select>
+</mapper>
+

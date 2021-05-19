@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.Vlink_experiment_curriculum_minMapper">
+		<!-- 统计返回多个值 -->
+	<resultMap id="experimentCurriculumMap" type="app.entity.StatExperimentCurriculum">
+		<id property="id" column="id" />
+		<result property="curriculum_id" column="curriculum_id" />
+		<result property="student_group_id" column="student_group_id" />
+		<result property="student_group_name" column="student_group_name" />
+		<result property="semester" column="semester" />
+		<result property="subject_id" column="subject_id" />
+		<result property="subject_name" column="subject_name" />
+		<result property="experiment_curriculum_is_actived" column="experiment_curriculum_is_actived" />
+		<result property="num" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string" resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as num FROM `vlink_experiment_curriculum_min` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max"  parameterType="string"  resultType="int">
+		select max(${fieldname}) as num from `vlink_experiment_curriculum_min`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `vlink_experiment_curriculum_min` set	${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>
+	
+		<!-- 统计返回多个值 -->
+	<select id="statExperimentCurriculum" parameterType="string" resultMap="experimentCurriculumMap">
+		SELECT curriculum_id,student_group_id,student_group_name,semester,subject_id,subject_name,experiment_curriculum_is_actived,count(experiment_curriculum_is_actived) as num 
+		FROM vlink_experiment_curriculum_min 
+		where semester='${semester}'
+		group by curriculum_id,student_group_id,student_group_name,semester,subject_id,subject_name,experiment_curriculum_is_actived
+		order by experiment_curriculum_is_actived desc,semester,subject_id
+	</select>
+</mapper>
+

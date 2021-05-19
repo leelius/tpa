@@ -1,0 +1,4 @@
+sts需要先安装lombok
+
+双击lombok.jar,按提示操作
+

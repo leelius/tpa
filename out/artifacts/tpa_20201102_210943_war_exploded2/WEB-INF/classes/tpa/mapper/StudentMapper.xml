@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.StudentMapper">
+
+
+	<!--	此mapper没有写insert方法(学生注册时需要)、delete方法(学生注销时需要)	-->
+
+
+
+	<!--  分隔符 julius	-->
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string"
+		resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as
+		num FROM `student` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max" parameterType="string" resultType="int">
+		select
+		max(${fieldname}) as num from `student`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `student` set
+		${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>
+
+	<select id="listStudentByCurriculumid" parameterType="int"
+		resultType="tpa.entity.Student">
+		SELECT * FROM student where id in
+		( SELECT distinct
+		student_id FROM vexperiment_record_mini where
+		curriculum_id=${curriculumid} ) order by sno
+	</select>
+	
+	<select id="getStudentBySno" resultType="tpa.entity.Student">
+		SELECT * FROM student where sno=#{sno}
+	</select>
+	
+</mapper>
+

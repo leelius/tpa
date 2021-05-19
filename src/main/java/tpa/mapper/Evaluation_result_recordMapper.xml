@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.Evaluation_result_recordMapper">
+	<!-- 返回自定义类型列表 -->
+	<resultMap id="userResultMap1" type="app.entity.EvprStatInfo">
+		<id property="id" column="student_id" />
+		<result property="num" column="cd" />
+		<result property="sum_difficulty" column="sd" />
+		<result property="sum_score_wish" column="sw" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string" resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as num FROM `evaluation_result_record` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max"  parameterType="string"  resultType="int">
+		select max(${fieldname}) as num from `evaluation_result_record`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `evaluation_result_record` set	${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>	
+	<select id="statEvprStatInfoByMap" parameterType="map"	resultMap="userResultMap1">
+		SELECT student_id,count(difficulty) as cd,sum(difficulty) as sd,sum(score_wish) as sw  FROM evaluation_result_record
+		<where>
+			<if test='evaluation_id != null  and evaluation_id !=""'>
+				evaluation_id = ${evaluation_id}
+			</if>
+		</where>
+		<if test="groupName != null and groupName != ''">
+			group by ${groupName}
+		</if>
+	</select>
+</mapper>
+

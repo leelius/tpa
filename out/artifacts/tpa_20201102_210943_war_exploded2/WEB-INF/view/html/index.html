@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+		<title>html5-Template</title>
+
+		<!-- Bootstrap -->
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="bssets/css/bootstrap-patch.css">
+		<link rel="stylesheet" href="bssets/css/pgzx.css">
+		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<body>
+		<!-- content-begin -->
+		<div class="container">
+			<div class="row">
+				<img src="bssets/pgzx/top.jpg" class="img-responsive center-block" />
+			</div>
+		</div>
+		<!-- Fixed navbar -->
+		<div class="container ">
+			<div class="row ">
+				<nav class="navbar navbar-default navbar-inverse ">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+							 aria-controls="navbar">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse ">
+							<ul class="nav navbar-nav center-block " style="position:relative;width:760px;margin: 0 15%;">
+								<li class="active"><a href="#">网站首页</a></li>
+								<li><a href="#about">新闻动态</a></li>
+								<li><a href="#about">通知公告</a></li>
+								<li><a href="#about">制度文件</a></li>
+								<li><a href="#about">政策解读</a></li>
+								<li><a href="#about">他山之石</a></li>
+								<li><a href="#about">数据采集</a></li>
+								<li><a href="#about">中心简介</a></li>
+
+							</ul>
+						</div>
+						<!--/.nav-collapse -->
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- /Fixed navbar -->
+		<div class="container">
+			<!--   row0 start   -->
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-0 padding-right-xs ">
+					<!--imageslider start-->
+					<div id="carousel1" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#carousel1" data-slide-to="0" class="active"></li>
+							<li data-target="#carousel1" data-slide-to="1"></li>
+							<li data-target="#carousel1" data-slide-to="2"></li>
+							<li data-target="#carousel1" data-slide-to="3"></li>
+						</ol>
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<img src="bssets/pgzx/slider/bg01.jpg" class="img-responsive center-block">
+								<div class="carousel-caption">师大掠影1</div>
+							</div>
+							<div class="item">
+								<img src="bssets/pgzx/slider/bg02.jpg" class="img-responsive center-block">
+								<div class="carousel-caption">师大掠影2</div>
+							</div>
+							<div class="item">
+								<img src="bssets/pgzx/slider/bg03.jpg" class="img-responsive center-block">
+								<div class="carousel-caption">师大掠影3</div>
+							</div>
+						</div>
+						<!-- Controls -->
+						<a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+							 aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#carousel1" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
+							 aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+					<!--imageslider end-->
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-xs padding-right-0 ">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">
+							<span>新闻动态</span> <a target="_blank" href="${basePath}cs.do?id=1">more……</a>
+						</div>
+						<c:forEach var="it" items="${zxtztop3list}" varStatus="i">
+							<div class="row item margin-horizontal-sm">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate padding-right-lg">
+									<a class="text-danger" target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate padding-right-lg" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="it" items="${zxtzlist}" varStatus="i">
+							<div class="row item">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate ">
+									<a target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!--   row0 end   -->
+			<!--   row1 start   -->
+			<div class="row margin-vertical-sm">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 padding-horizontal-xs">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">相关链接</div>
+						<div class="padding-vertical-xs">
+							<a class="pull-left margin-vertical-xs showbd" href="http://www.heec.edu.cn/" target="_blank"><img class="img-responsive center-block"
+								 src="bssets/pgzx/link/jybpgw.png" alt="教育部高等教育教学评估中心" /></a>
+							<a class="pull-left margin-vertical-xs showbd" href="http://sicnu.edu.cn/" target="_blank"><img class="img-responsive center-block"
+								 src="bssets/pgzx/link/sicnu3.png" alt="四川师范大学" /></a>
+							<a class="pull-left margin-vertical-xs showbd" href="http://jwc.sicnu.edu.cn/" target="_blank"><img class="img-responsive center-block"
+								 src="bssets/pgzx/link/sicnujwc.png" alt="四川师范大学教务处" /></a>
+							<a class="pull-left margin-vertical-xs showbd" href="http://www.moe.gov.cn/" target="_blank"><img class="img-responsive center-block"
+								 src="bssets/pgzx/link/jyb.png" alt="中华人民共和国教育部" /></a>
+							<a class="pull-left margin-vertical-xs showbd" href="http://jwc.sicnu.edu.cn/" target="_blank"><img class="img-responsive center-block"
+								 src="bssets/pgzx/link/scjyt.png" alt="四川省教育厅" /></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 padding-left-0 padding-right-xs ">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">
+							<span>通知公告</span> <a target="_blank" href="${basePath}cs.do?id=1">more……</a>
+						</div>
+						<c:forEach var="it" items="${zxtztop3list}" varStatus="i">
+							<div class="row item margin-horizontal-sm">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate padding-right-lg">
+									<a class="text-danger" target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate padding-right-lg" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="it" items="${zxtzlist}" varStatus="i">
+							<div class="row item">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate ">
+									<a target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 padding-left-xs padding-right-0 ">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">
+							<span>制度文件</span> <a target="_blank" href="${basePath}cs.do?id=1">more……</a>
+						</div>
+						<c:forEach var="it" items="${zxtztop3list}" varStatus="i">
+							<div class="row item margin-horizontal-sm">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate padding-right-lg">
+									<a class="text-danger" target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate padding-right-lg" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="it" items="${zxtzlist}" varStatus="i">
+							<div class="row item">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate ">
+									<a target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!--   row1 end   -->
+			<!--   row2 start   -->
+			<div class="row margin-vertical-sm">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-0 padding-right-xs ">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">
+							<span>政策解读</span> <a target="_blank" href="${basePath}cs.do?id=1">more……</a>
+						</div>
+						<c:forEach var="it" items="${zxtztop3list}" varStatus="i">
+							<div class="row item margin-horizontal-sm">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate padding-right-lg">
+									<a class="text-danger" target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate padding-right-lg" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="it" items="${zxtzlist}" varStatus="i">
+							<div class="row item">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate ">
+									<a target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 padding-left-xs padding-right-0 ">
+					<div class="showbd newslist">
+						<div class="title bg-primary padding-horizontal-sm">
+							<span>他山之石</span> <a target="_blank" href="${basePath}cs.do?id=1">more……</a>
+						</div>
+						<c:forEach var="it" items="${zxtztop3list}" varStatus="i">
+							<div class="row item margin-horizontal-sm">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate padding-right-lg">
+									<a class="text-danger" target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate padding-right-lg" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="it" items="${zxtzlist}" varStatus="i">
+							<div class="row item">
+								<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 text-truncate ">
+									<a target="_blank" href="as.do?id=${it.id}&type=notice" title="${it.notice_title}">${it.notice_title}</a>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 text-truncate" title="${it.sys_date}">
+									<div class="date">${it.sys_date}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+			<!--   row2 end   -->
+			<!--footer开始-->
+			<div class="row text-center margin-vertical-lg">
+				<hr class="showborderblue" />
+				地址：成都市锦江区静安路5号 | 邮编：610068 | 联系电话：028-84760038
+				<br />
+				&copy;All Right Reserved . 版权所有 四川师范大学<span onclick="window.open('login')">教育教学</span>质量监测和评估中心 <br />
+			</div>
+			<!--footer结束-->
+		</div>
+
+		<!-- content-end -->
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+</html>

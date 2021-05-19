@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.UserMapper">
+
+	<!--	此mapper没有写insert方法(老师注册时需要)、delete方法(老师注销时需要)	-->
+
+
+	<!--  分隔符	julius -->
+	<!-- 返回二值列表 -->
+	<!--resultMap自定义结果集映射规则，且不能和resultType同时使用	-->
+	<resultMap id="userResultMap" type="HashMap">
+		<!--定义主键的封装规则
+			id定义主键会有底层优化
+			column：指定哪一列
+			property：指定对应的javaBean属性
+			-->
+		<id property="key" column="id" />
+		<!--定义普通列封装规则	-->
+		<result property="value" column="num" />
+		<!--其他不指定的列会自动封装-->
+	</resultMap>
+	<!-- 返回自定义类型列表 -->
+	<resultMap id="userResultMap1" type="app.entity.StatInfo1">
+		<id property="id" column="id" />
+		<result property="num" column="num1" />
+		<result property="sum" column="sum1" />
+		<result property="avg" column="avg1" />
+	</resultMap>
+	<!-- 不带参数返回二值 -->
+	<select id="statUserInfoToMap" resultMap="userResultMap">
+		select `id`,count(*) as num FROM `user` group by `id`
+	</select>
+	<!-- 带参数返回二值   parameterType已经废弃，老式风格的参数映射-->
+	<select id="statInfoToMap" parameterType="map" resultMap="userResultMap">
+		select `id`,count(*) as num FROM `user`
+		<where>
+			<if test="id != null">
+				`id` = #{id}
+			</if>
+		</where>
+		<if test="groupName != null and groupName != ''">
+			group by `${groupName}`
+		</if>
+	</select>
+	<select id="statUserInfoToClass" resultMap="userResultMap1">
+		select `id`,count(*) as num1, sum(id) as sum1 ,avg(id) as avg1 FROM `user` group by	`id`
+	</select>
+	<select id="statInfoToClass" parameterType="map"	resultMap="userResultMap1">
+		SELECT `id`,count(*) as num1, sum(id) as sum1 ,avg(id) as avg1 FROM `user`
+		<where>
+			<if test="id != null">
+				`id` = #{id}
+			</if>
+		</where>
+		<if test="groupName != null and groupName != ''">
+			group by `${groupName}`
+		</if>
+	</select>
+	<select id="listByCondition" parameterType="map" resultType="tpa.entity.User">
+		select * from `user`
+		<where>
+			<if test="id != null">
+				and `id` = #{id}
+			</if>
+			<if test="name != null">
+				and `name` like '%${name}%'
+			</if>
+		</where>
+		<if test="orderName != null and orderName != ''">
+			order by ${orderName}
+		</if>
+	</select>
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string" resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as num FROM `user` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max"  parameterType="string"  resultType="int">
+		select max(${fieldname}) as num from `user`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `user` set	${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>
+</mapper>
+

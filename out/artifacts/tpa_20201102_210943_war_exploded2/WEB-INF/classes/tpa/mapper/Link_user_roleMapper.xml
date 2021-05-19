@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tpa.mapper.Link_user_roleMapper">
+
+	<!-- 返回二值列表 -->
+	<resultMap id="kvResultMap" type="HashMap">
+		<id property="key" column="keyname" />
+		<result property="value" column="num" />
+	</resultMap>
+	<!-- 返回二值列表 -->
+	<select id="statMapByFieldname" parameterType="string" resultMap="kvResultMap">
+		select `${fieldname}` as keyname,count(`${fieldname}`) as num FROM `link_user_role` group by `${fieldname}`
+	</select>
+	<!-- max -->
+	<select id="max"  parameterType="string"  resultType="int">
+		select max(${fieldname}) as num from `link_user_role`
+	</select>
+	<!-- 更新计数器类型的指定字段 -->
+	<update id="updatePlus">
+		update `link_user_role` set	${fieldname}=${fieldname}+#{addend} where id=#{id}
+	</update>
+</mapper>
+

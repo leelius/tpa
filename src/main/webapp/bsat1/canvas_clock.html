@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="" name="description" />
+<meta content="webthemez" name="author" />
+<title>15款基于canvas时钟特效</title>
+<!-- Bootstrap Styles-->
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FontAwesome Styles-->
+<link href="assets/css/font-awesome.css" rel="stylesheet" />
+<!-- Custom Styles-->
+<link href="assets/css/custom-styles.css" rel="stylesheet" />
+<!-- Google Fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+	
+	
+  
+<link href="assets/css/canvas_clock/canvas_clock.css" rel="stylesheet" />    
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="navbar navbar-default top-navbar" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><strong><i
+						class="icon fa fa-plane"></i> BRILLIANT</strong></a>
+				<div id="sideNav" href="">
+					<i class="fa fa-bars icon"></i>
+				</div>
+			</div>
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-messages">
+						<li><a href="#">
+								<div>
+									<strong>John Doe</strong> <span class="pull-right text-muted">
+										<em>Today</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since the 1500s...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since an kwilnw...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem Ipsum has been the industry's standard dummy
+									text ever since the...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>Read
+									All Messages</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-messages --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-tasks">
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 1</strong> <span class="pull-right text-muted">60%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-success"
+											role="progressbar" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%">
+											<span class="sr-only">60% Complete (success)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 2</strong> <span class="pull-right text-muted">28%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-info" role="progressbar"
+											aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"
+											style="width: 28%">
+											<span class="sr-only">28% Complete</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 3</strong> <span class="pull-right text-muted">60%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-warning"
+											role="progressbar" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%">
+											<span class="sr-only">60% Complete (warning)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 4</strong> <span class="pull-right text-muted">85%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-danger"
+											role="progressbar" aria-valuenow="85" aria-valuemin="0"
+											aria-valuemax="100" style="width: 85%">
+											<span class="sr-only">85% Complete (danger)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Tasks</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-tasks --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 min</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" aria-expanded="false"> <i
+						class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+		</nav>
+		<!--/. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+
+					<li><a href="index.html"><i class="fa fa-dashboard"></i>
+							Dashboard</a></li>
+					<li><a href="ui-elements.html"><i class="fa fa-desktop"></i>
+							UI Elements</a></li>
+
+					<li><a href="#"><i class="fa fa-sitemap"></i> Charts<span
+							class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="chart.html">Charts JS</a></li>
+							<li><a href="morris-chart.html">Morris Chart</a></li>
+						</ul></li>
+					<li><a href="tab-panel.html"><i class="fa fa-qrcode"></i>
+							Tabs & Panels</a></li>
+
+					<li><a href="table.html"><i class="fa fa-table"></i>
+							Responsive Tables</a></li>
+					<li><a href="form.html"><i class="fa fa-edit"></i> Forms </a>
+					</li>
+
+
+					<li><a href="#"><i class="fa fa-sitemap"></i> Multi-Level
+							Dropdown<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="#">Second Level Link</a></li>
+							<li><a href="#">Second Level Link</a></li>
+							<li><a href="#">Second Level Link<span class="fa arrow"></span></a>
+								<ul class="nav nav-third-level">
+									<li><a href="#">Third Level Link</a></li>
+									<li><a href="#">Third Level Link</a></li>
+									<li><a href="#">Third Level Link</a></li>
+
+								</ul></li>
+						</ul></li>
+					<li><a class="active-menu" href="empty.html"><i
+							class="fa fa-fw fa-file"></i> Empty Page</a></li>
+				</ul>
+
+			</div>
+
+		</nav>
+		<!-- /. NAV SIDE  -->
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">
+					Empty Page <small>Create new page.</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Empty</a></li>
+					<li class="active">Data</li>
+				</ol>
+			</div>
+			<div id="page-inner">
+				<!-- content start -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+<!-- canvas_clock_begin -->
+<div class="jq22-content">
+    <canvas id="clock1_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock2_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock3_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock4_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock5_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock6_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock7_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock8_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock9_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock10_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock11_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock12_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock13_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock14_" width="200px" height="200px">
+    </canvas>
+    <canvas id="clock15_" width="200px" height="200px">
+    </canvas>
+</div>
+<!-- canvas_clock_end -->
+					</div>
+				</div>
+				<!-- content end -->
+				<footer>
+					<p>
+						Copyright &copy; 2016.Company name All rights reserved.<a
+							target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+					</p>
+				</footer>
+			</div>
+			<!-- /. PAGE INNER  -->
+		</div>
+		<!-- /. PAGE WRAPPER  -->
+	</div>
+	<!-- /. WRAPPER  -->
+	<!-- JS Scripts-->
+	<!-- jQuery Js -->
+	<script src="assets/js/jquery-1.10.2.js"></script>
+	<!-- Bootstrap Js -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- Metis Menu Js -->
+	<script src="assets/js/jquery.metisMenu.js"></script>
+	<!-- Custom Js -->
+	<script src="assets/js/custom-scripts2.js"></script>
+	<!-- canvas_clock -->
+	<script src="assets/css/canvas_clock/canvas_clock.js"></script>
+ <script>
+      clockd1_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd2_={
+              "indicate": true,
+              "dial1_color": "#666600",
+              "time_24h": true,
+              "timeoffset":0,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd3_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd4_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd5_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd6_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_add_color": "#ccc",
+              "time_24h": true,
+              "timeoffset":0,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd7_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd8_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":5,
+              "date_add_color": "#999",
+             };
+      clockd9_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd10_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "track": "#4b4b00",
+             };
+      clockd11_={
+              "dial1_color": "#666600",
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd12_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd13_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd14_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+      clockd15_={
+              "indicate": true,
+              "indicate_color": "#222",
+              "dial1_color": "#666600",
+              "dial2_color": "#81812e",
+              "dial3_color": "#9d9d5c",
+              "time_add": 1,
+              "time_24h": true,
+              "date_add":3,
+              "date_add_color": "#999",
+             };
+     
+      var c = document.getElementById('clock1_');
+      cns1_ = c.getContext('2d');
+      var c = document.getElementById('clock2_');
+      cns2_ = c.getContext('2d');
+      var c = document.getElementById('clock3_');
+      cns3_ = c.getContext('2d');
+      var c = document.getElementById('clock4_');
+      cns4_ = c.getContext('2d');
+      var c = document.getElementById('clock5_');
+      cns5_ = c.getContext('2d');
+      var c = document.getElementById('clock6_');
+      cns6_ = c.getContext('2d');
+      var c = document.getElementById('clock7_');
+      cns7_ = c.getContext('2d');
+      var c = document.getElementById('clock8_');
+      cns8_ = c.getContext('2d');
+      var c = document.getElementById('clock9_');
+      cns9_ = c.getContext('2d');
+      var c = document.getElementById('clock10_');
+      cns10_ = c.getContext('2d');
+      var c = document.getElementById('clock11_');
+      cns11_ = c.getContext('2d');
+      var c = document.getElementById('clock12_');
+      cns12_ = c.getContext('2d');
+      var c = document.getElementById('clock13_');
+      cns13_ = c.getContext('2d');
+      var c = document.getElementById('clock14_');
+      cns14_ = c.getContext('2d');
+      var c = document.getElementById('clock15_');
+      cns15_ = c.getContext('2d');
+        
+      clock_conti(200,cns1_,clockd1_);
+      clock_digital(200,cns2_,clockd2_);
+      clock_norm(200,cns3_,clockd3_);
+      clock_binary(200,cns4_,clockd4_);
+      clock_follow(200,cns5_,clockd5_);
+      clock_circles(200,cns6_,clockd6_);
+      clock_dots(200,cns7_,clockd7_);
+      clock_roulette(200,cns8_,clockd8_);
+      clock_num(200,cns9_,clockd9_);
+      clock_planets(200,cns10_,clockd10_);
+      clock_digitalran(200,cns11_,clockd11_);
+      clock_bars(200,cns12_,clockd12_);
+      clock_grow(200,cns13_,clockd13_);
+      clock_random(200,cns14_,clockd14_);
+      clock_reverse(200,cns15_,clockd15_);
+</script>
+
+
+</body>
+</html>

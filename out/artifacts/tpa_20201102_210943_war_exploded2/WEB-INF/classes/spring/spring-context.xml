@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+			            http://www.springframework.org/schema/context
+			            http://www.springframework.org/schema/context/spring-context-4.3.xsd
+			            http://www.springframework.org/schema/tx
+			            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+			            http://mybatis.org/schema/mybatis-spring
+			            http://mybatis.org/schema/mybatis-spring.xsd">
+    <!-- spring用来管理所有业务逻辑组件   -->
+    <!-- 自动加载属性配置文件   引入数据库的配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 扫描ct包下面的java文件，有Spring的相关注解的类，则把这些类注册为Spring的bean -->
+    <context:component-scan base-package="app.service,tpa.service">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <!--  julius修改版
+    <context:component-scan base-package="app.service,tpa.service">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    -->
+
+    <!-- 注入引用的axis2，支持webservice -->
+    <bean id="demows" class="app.webservice.DemoWebService"></bean>
+
+    <!-- 配置wechat -->
+    <bean id="wechat" class="app.wechat.pojo.WeChat">
+        <property name="appId" value="${wechat.appId}"></property>
+        <property name="appSecret" value="${wechat.appSecret}"></property>
+        <property name="enable" value="${wechat.enable}"></property>
+    </bean>
+
+    <!-- 数据源信息加密 -->
+    <bean id="dbPasswordCallback" class="sld.webutils.DBPasswordCallback" lazy-init="true"/>
+    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="statementExecutableSqlLogEnable" value="false"/>
+    </bean>
+
+    <!-- 数据库连接 数据源-->
+    <bean id="dataSource"
+          class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close"
+          init-method="init" lazy-init="true">
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"/>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"/>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"/>
+        <!-- -->
+        <property name="defaultReadOnly" value="false"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="logFilter"/>
+            </list>
+        </property>
+        <property name="filters" value="stat"/>
+
+        <property name="passwordCallback" ref="dbPasswordCallback"/>
+        <property name="connectionProperties" value="password=${jdbc.password}"/>
+
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="validationQuery" value="${validationQuery}"/>
+        <property name="timeBetweenLogStatsMillis" value="${timeBetweenLogStatsMillis}"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+    </bean>
+
+    <!--  spring与mybatis的整合
+            目的:1、spring管理所有组件。mapper的实现类。
+                    Service ==> Dao   @Autowired:自动注入mapper
+                2、spring来管理事务，spring声明式事务
+    -->
+    <!-- 配置SqlSessionFactory，org.mybatis.spring.SqlSessionFactoryBean是Mybatis社区开发用于整合Spring的bean -->
+    <bean id="sqlSessionFactory"
+          class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+        <!--    注册插件    -->
+        <property name="plugins">
+            <array>
+                <!-- 注册分页插件及配置参数 -->
+                <bean id="paginationInterceptor"
+                      class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
+                    <property name="dialectType" value="mysql"/>
+                </bean>
+                <!-- 性能分析插件，超过maxTime自动停止运行，有助于发现问题。format(布尔值),SQL是否格式化 默认false <bean
+                    id="performanceInterceptor" class="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor">
+                    <property name="maxTime" value="100" /> <property name="format" value="true"
+                    /> </bean> -->
+            </array>
+        </property>
+    </bean>
+
+    <!-- mybatis:scan会将app.dao包里的所有接口当作mapper配置，之后可以自动引入mapper类(dao)
+         扫描所有的mapper接口的实现，让这些mapper能够自动注入
+         base-package 指定mapper接口的包名
+    -->
+    <mybatis:scan base-package="app.dao,tpa.mapper"/>
+
+    <!-- JDBC事务管理器  spring事务管理器-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- 启用基于annotation注解方式事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

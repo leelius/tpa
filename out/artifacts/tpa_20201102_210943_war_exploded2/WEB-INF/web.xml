@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!--  监听用户是否是重复登录及登录的用户数	-->
+	<listener>
+		<listener-class>app.listener.SessionListener</listener-class>
+	</listener>
+	<!-- 防止Spring内存溢出监听器  -->
+    <listener>  
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>  
+    </listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/spring-context.xml</param-value>
+	</context-param>
+	<!--  前端控制器 -统一接收请求 -julius	-->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 创建的时候要自动加载初始化参数 - 加载SpringMvc的配置文件 -julius -->
+		<init-param>
+			<!-- 指定配置文件的路径 -julius -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc-config.xml</param-value>
+		</init-param>
+		<!-- 将这个Servlet的实例化和初始化提前到到服务器启动的时候，有助于提高运行效率 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+    <servlet>  
+        <servlet-name>AxisServlet</servlet-name>  
+        <servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>  
+    </servlet>  
+    <servlet-mapping>  
+        <servlet-name>AxisServlet</servlet-name>  
+        <url-pattern>/services/*</url-pattern>  
+    </servlet-mapping>
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<scripting-invalid>true</scripting-invalid>
+			<include-prelude>/WEB-INF/page/taglib.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/page/404.html</location>
+	</error-page>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<!-- 	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>securedapp</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	-->
+</web-app>

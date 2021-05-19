@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+/* 2018年7月1日  gjyj首页设定 */
+
+ul {
+	list-style: none;
+}
+
+.showbordergold {
+	border: 1px solid #BCAA8E;
+}
+
+.bg-blackishgreen {
+	background-color: #106E43;
+}
+
+.bg-blackishgreen a {
+	color: white;
+	font-family: "微软雅黑" Microsoft Yahei Font;
+}
+
+.topbar {
+	background-image: url('../img/topbar.jpg');
+	height: 186px;
+	background-position: center;
+}
+
+.topbar a {
+	font-weight: 600;
+	font-size: 0.8em;
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	color: #332C2B;
+}
+
+#nav {
+	padding: 0;
+	background-color: #106E43;
+	height: 50px;
+}
+
+#nav a {
+	display: block;
+	font-weight: 600;
+}
+
+#nav a:hover {
+	background-color: white;
+	color: #106E43;
+}
+
+#nav ul li div a {
+	font-weight: normal;
+}
+
+#nav ul li div span, #nav ul li a {
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	font-size: 1.2em;
+	text-decoration: none;
+	/*去除一级项目的下划线*/
+	line-height: 50px;
+	/*设定行高*/
+	color: white;
+	/* 避免导航和其他内容重叠 */
+	text-align: center;
+	/*设定一级项目居中*/
+	height: 50px;
+	/*设定高度*/
+}
+
+#nav ul {
+	margin: 0 auto;
+}
+
+#nav ul li {
+	float: left;
+	/* 浮动，把一级项目转成横向排列 */
+	width: 110px;
+	/* 宽度，把一级项目转成横向排列 */
+	list-style: none;
+	/* 隐藏列表的项目符号 */
+	position: relative;
+	/* 设定一级项目为相对定位，这样才能成为二级项目的绝对定位的参考对象 */
+}
+
+#nav ul li div {
+	display: none;
+	/* 隐藏二级项目 */
+	margin: 0;
+	padding: 0;
+	/*内外边距都设置为0，减少不同浏览器的差异*/
+	position: absolute;
+	width: 1100px;
+	top: 50px;
+	background-image: url(../img/navsubbg2.png);
+	background-repeat: no-repeat;
+}
+
+#nav ul li:hover div {
+	display: block;
+	/* 设定二级项目在鼠标指向一级项目时显示 */
+}
+
+#nav ul li:hover div a {
+	display: block;
+	float: left;
+	background-image: url(../img/navsubbg3.png);
+	width: 110px;
+	color: black;
+}
+
+#nav ul li:hover div a:hover {
+	background-color: transparent;
+	background-image: url(../img/navsubbg4.png);
+	color: #7D6747;
+}
+
+.breadcrumb {
+	padding: 0px 15px;
+	margin-bottom: 8px;
+	list-style: none;
+	background-color: transparent;
+	border-radius: 4px;
+}
+
+.breadcrumb>li+li:before {
+	padding: 0 5px;
+	color: #ccc;
+	content: ">\00a0";
+}
+
+.atitle {
+	float: left;
+	background-image: url('../img/atitlemid.png');
+}
+
+#atitle1 {
+	background-image: url('../img/atitleleft.jpg');
+	background-repeat: no-repeat;
+	width: 150px;
+	height: 25px;
+	float: left;
+}
+
+.title {
+	background-color: white;
+	line-height: 25px;
+	height: 25px;
+	padding: 0 50px;
+	font-size: 1.4em;
+	font-weight: 600;
+}
+
+#atitle2 {
+	height: 25px;
+}
+
+#atitle3 {
+	background-image: url('../img/atitleright.png');
+	background-repeat: no-repeat;
+	width: 180px;
+	height: 25px;
+	float: right;
+}
+
+.content {
+	font-size: 1.1em;
+	line-height: 2.5em;
+}
+.list{
+	font-size: 1.1em;
+	line-height: 2.5em;	
+	height: 2.5em;
+	border-bottom:1px dotted black;
+}

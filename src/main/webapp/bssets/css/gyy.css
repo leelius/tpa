@@ -1,0 +1,294 @@
+@charset "UTF-8";
+
+/* 2018年7月1日  gjyj首页设定 */
+
+ul {
+	list-style: none;
+}
+.showbordergold {
+	border: 1px solid #BCAA8E;
+}
+
+.bg-blackishgreen {
+	background-color: #106E43;
+}
+
+.bg-blackishgreen a {
+	color: white;
+	font-family: "微软雅黑" Microsoft Yahei Font;
+}
+
+.topbar {
+	background-image: url('../img/topbar.jpg');
+	height: 186px;
+	background-position: center;
+}
+
+.topbar a {
+	font-weight: 600;
+	font-size: 0.8em;
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	color: #332C2B;
+}
+
+#nav {
+	padding: 0;
+	background-color: #106E43;
+	height: 50px;
+}
+
+#nav a {
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+#nav ul {
+	margin: 0 auto;
+
+}
+
+#nav li {
+	float: left;
+	/* 浮动，把一级项目转成横向排列 */
+	width: 110px;
+	/* 宽度，把一级项目转成横向排列 */
+	list-style: none;
+	/* 隐藏列表的项目符号 */
+	position: relative;
+	/* 设定一级项目为相对定位，这样才能成为二级项目的绝对定位的参考对象 */
+}
+
+#nav li ul {
+	display: none;
+	/* 隐藏二级项目 */
+	margin: 0;
+	padding: 0;
+	/*内外边距都设置为0，减少不同浏览器的差异*/
+	position: absolute;
+}
+
+#nav li:hover ul {
+	display: block;
+	/* 设定二级项目在鼠标指向一级项目时显示 */
+	position: absolute;
+	/* 避免二级项目“挤动”原有的内容 */
+	width: 110px;
+	/* 限定宽度，设定二级项目为纵向排列 */
+	top: 50px;
+	left: 0px;
+}
+
+#nav li ul li {
+	width: 110px;
+	/* 限定宽度，设定二级项目为纵向排列 */
+	height: 40px;
+}
+
+#nav li a {
+	text-decoration: none;
+	/*去除一级项目的下划线*/
+	display: block;
+	/*显示为“块”*/
+	line-height: 50px;
+	/*设定行高*/
+	color: white;
+	/* 避免导航和其他内容重叠 */
+	text-align: center;
+	/*设定一级项目居中*/
+	height: 50px;
+	/*设定高度*/
+}
+
+#nav li ul li a {
+	background-color: rgba(255, 255, 255, 0.6);
+	/* 伪类hover，增强交互体验 */
+	color: black;
+	height: 40px;
+	line-height: 40px;
+	font-weight:normal;
+}
+
+#nav li ul li a:hover {
+	/* 伪类hover，增强交互体验 */
+	color: Black;
+}
+
+#nav li:hover a {
+	background-color: white;
+	color: #106E43;
+	/* 鼠标指向时，保持一级项目的背景颜色，但是会影响二级项目 */
+}
+
+#nav li:hover ul li a {
+	color: Black;
+	background-color: rgba(255, 255, 255, 0.6);
+	opacity: 1;
+	z-index: 1;
+	font-weight: normal;
+}
+
+#nav li:hover ul li a:hover {
+	color: #B39B77;
+	background-color: rgba(255, 255, 255, 0.9);
+	/* 补充设定鼠标在二级项目上移动时的交互 */
+}
+
+#newstitle {
+	font-size: 1.4em;
+	color: #7D6747;
+}
+
+#noticestitle {
+	font-size: 1.4em;
+	color: black;
+}
+
+.contentcolumn {
+	margin: 20px 0 0 0;
+}
+
+#news {}
+
+#news a {
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	color: #7D6747;
+}
+
+#notices a {
+	font-family: "微软雅黑" Microsoft Yahei Font;
+	color: black;
+}
+
+#news img {
+	width: 114px;
+	height: 77px;
+}
+
+.topnews {}
+
+.topnews .title a{
+	color: #D3AB4F;
+	text-overflow: ellipsis;
+	/* 溢出时使用省略号 */
+	white-space: nowrap;
+	/* 强制一行显示 */
+	overflow: hidden/* 强制溢出时隐藏 */
+}
+
+.intro {
+	height: 2.6em;
+	overflow: hidden;
+}
+
+.title {
+	font-size: 1.2em;
+	text-overflow: ellipsis;
+	/* 溢出时使用省略号 */
+	white-space: nowrap;
+	/* 强制一行显示 */
+	overflow: hidden/* 强制溢出时隐藏 */
+}
+
+#notices {}
+
+#notices img {
+	width: 114px;
+	height: 77px;
+}
+
+.topnews .boxdate {
+	width: 70px;
+	height: 70px;
+	border: 1px solid #DAB96B;
+}
+
+.topnews .day {
+	text-align: center;
+	font-size: 44px;
+	line-height: 46px;
+	height: 46px;
+	color: #5FA776;
+}
+
+.topnews .month {
+	font-size: 11px;
+	text-align: center;
+	line-height: 22px;
+	height: 22px;
+	background-color: #DAB96B;
+	color: white;
+}
+
+.boxdate {
+	width: 70px;
+	height: 70px;
+	border: 1px solid #5FA776;
+}
+
+.day {
+	text-align: center;
+	font-size: 44px;
+	line-height: 46px;
+	height: 46px;
+	color: #DAB96B;
+}
+
+.month {
+	font-size: 11px;
+	text-align: center;
+	line-height: 22px;
+	height: 22px;
+	background-color: #5FA776;
+	color: white;
+}
+
+/*--flexisel--*/
+.work-bottom{
+	
+}
+#flexiselDemo1 {
+	display: none;
+}
+.nbs-flexisel-container {
+	position: relative;
+	max-width: 100%;
+}
+.nbs-flexisel-ul {
+	position: relative;
+	width: 9999px;
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+	text-align: center;
+}
+.nbs-flexisel-inner {
+	overflow: hidden;
+	width:90%;
+	margin: 50px auto;
+}
+.nbs-flexisel-item {
+	float: left;
+	margin: 0;
+	padding: 0px;
+	cursor: pointer;
+	position: relative;
+}
+
+/*---- Navigation ---*/
+.nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
+	width:40px;
+	height:60px;
+	position: absolute;
+	cursor: pointer;
+	z-index: 100;
+}
+.nbs-flexisel-nav-left {
+	left: 0px;
+	background: url(../i/left.png) no-repeat 0px 0px;
+}
+.nbs-flexisel-nav-right {
+	right: 0px;
+	background: url(../i/right.png) no-repeat 0px 0px;
+}
+/*--flexisel--*/

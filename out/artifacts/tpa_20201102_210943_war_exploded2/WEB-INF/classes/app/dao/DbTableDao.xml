@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.dao.DbTableDao">
+	<select id="getlist" parameterType="map" resultType="java.lang.String">
+		SELECT TABLE_NAME,TABLE_ROWS,table_type FROM INFORMATION_SCHEMA.TABLES
+		<where>
+			TABLE_SCHEMA='cmsos'
+			<if test='tableName != null  and tableName !=""'>
+				and TABLE_NAME =#{tableName}
+			</if>
+			<if test='tableRows != null  and tableRows !=""'>
+				and TABLE_ROWS =#{tableRows}
+			</if>
+			<if test='tableType != null  and tableType !=""'>
+				and table_type =#{tableType}
+			</if>
+		</where>
+		<if test='orderName != null and orderName != ""'>
+			order by ${orderName}
+		</if>
+	</select>
+</mapper>
+
